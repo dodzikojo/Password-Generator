@@ -30,7 +30,7 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
-.card {
+.custom-card {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
   border-width: 1px;
@@ -42,7 +42,7 @@ header {
   padding: 30px 40px;
 }
 
-.card-header::after {
+.custom-card-header::after {
   content: " ";
   display: block;
   width: 100%;
@@ -54,7 +54,7 @@ header {
   min-height: 100px;
 }
 
-.card-footer {
+.custom-card-footer {
   text-align: center;
 }
 
@@ -72,9 +72,9 @@ header {
   clear: both;
 }
 
-.btn {
+.custom-btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
+  background-color: hsl(360, 91%, 36%) !important;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
@@ -118,8 +118,13 @@ button[disabled] {
   overflow: hidden;
 }
 
+.modal-info-text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
 @media (max-width: 690px) {
-  .btn {
+  .custom-btn {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
@@ -131,7 +136,7 @@ button[disabled] {
 }
 
 @media (max-width: 500px) {
-  .btn {
+  .custom-btn {
     font-size: 0.8rem;
   }
 }
