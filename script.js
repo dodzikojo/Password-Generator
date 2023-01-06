@@ -1,3 +1,47 @@
+// Pseudo code
+// Generate a password when the button is clicked
+// Present a series of prompts for password criteria
+// Length of password
+// At least 10 characters but no more than 64.
+  // Prompt:  How long would you like your password to be?(10-64)
+
+var passwordLength;
+var isLowerCase = false;
+var isUpperCase = false;
+var isNumericCharacters = false;
+var isSpecialCharacters = false;
+
+
+//   if(typeof(passwordLength) == 'number'){
+//     console.log ("Well done!It's a number");
+//   }
+//   else {
+//   console.log ("You need to select a number");
+// }
+
+if(isNaN(passwordLength)){
+  alert("it is a valid number");
+}else {
+  alert("it is not a valid number");
+}
+
+
+
+  // Validation:
+   //  Ensure that input is numerical and falls within the required specifications.
+// Character types
+// Lowercase
+  // Confirm Prompt: Do you want lowercase  characters in your password?
+// Uppercase
+  // Confirm Prompt: Do you want uppercase characters in your password?
+// Numeric
+  //Confirm  Prompt: Do you want numeric characters in your password?
+// Special characters ($@%&*, etc)
+  //Confirm  Prompt: Do you want special characters in your password?
+// Code should validate for each input and at least one character type should be selected
+  // Minimum requirement: length of characters and at least one character type
+// Once prompts are answered then the password should be generated and displayed in an alert or written to the page
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -110,6 +154,10 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
+
+
+  var passwordLength = parseInt(prompt("How long would you like your password to be?"));
+  console.log (typeof(passwordLength));
 
   passwordText.value = password;
 }
