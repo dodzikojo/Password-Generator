@@ -13,7 +13,6 @@ An application to generate a random password based on criteria the user has sele
       * Special characters ($@%&*, etc)
   * Code should validate for each input and at least one character type should be selected
 
-# Solution
 ## Functionality
 * A passwordOptions class is created to store all user selected options for creating the password.
     ```javascript

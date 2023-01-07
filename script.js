@@ -1,17 +1,19 @@
 
 
 class passwordOptions {
-  constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters) {
+  constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters, hasPasswordOptionsSelected) {
     passwordLength = passwordLength;
     isMixedCase = isMixedCase,
       isLowerCase = isLowerCase,
       isUpperCase = isUpperCase,
       isNumericCharacters = isNumericCharacters,
-      isSpecialCharacters = isSpecialCharacters
+      isSpecialCharacters = isSpecialCharacters,
+      hasPasswordOptionsSelected = hasPasswordOptionsSelected
   }
 }
 
 let userPasswordOptions = new passwordOptions();
+userPasswordOptions.hasPasswordOptionsSelected = false;
 
 // Array of special characters to be included in password
 var specialCharacters = [
@@ -105,25 +107,40 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  userPasswordOptions.passwordLength = parseInt(prompt("How long would you like your password to be?", 14));
+
+  var usePreviousOptions = false;
+
+  if (userPasswordOptions.hasPasswordOptionsSelected == true) {
+    usePreviousOptions = confirm("Would you like to use previously selected options?");
+  }
+
+  if (usePreviousOptions == false) {
+    userPasswordOptions.passwordLength = parseInt(prompt("How long would you like your password to be?", 14));
 
 
-  if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64) {
-    userPasswordOptions.isMixedCase = confirm("Would you like your password to consist of Mixed cases?");
+    if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64) {
+      userPasswordOptions.isMixedCase = confirm("Would you like your password to consist of Mixed cases?");
+  
+      if (userPasswordOptions.isMixedCase != true) {
+  
+        userPasswordOptions.isLowerCase = confirm("Include Lowercase characters?");
+        userPasswordOptions.isUpperCase = confirm("Include Uppercase characters?");
+  
+      }
+  
+      userPasswordOptions.isSpecialCharacters = confirm("Include special characters?");
+      userPasswordOptions.isNumericCharacters = confirm("Include Numerical characters?");
 
-    if (userPasswordOptions.isMixedCase != true) {
-
-      userPasswordOptions.isLowerCase = confirm("Include Lowercase characters?");
-      userPasswordOptions.isUpperCase = confirm("Include Uppercase characters?");
-
+      userPasswordOptions.hasPasswordOptionsSelected = true;
     }
-
-    userPasswordOptions.isSpecialCharacters = confirm("Include special characters?");
-    userPasswordOptions.isNumericCharacters = confirm("Include Numerical characters?");
+    else {
+      alert("You need to enter a valid number between 10-64.");
+    }
   }
-  else {
-    alert("You need to enter a valid number between 10-64.");
-  }
+ 
+    
+  
+ 
 }
 
 // Function for getting a random element from an array
