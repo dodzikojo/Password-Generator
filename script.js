@@ -175,6 +175,7 @@ function generatePassword() {
     }
   }
 
+  //Randomized generated password.
   var generatedPasswordArray = [];
   for (let index = 0; index < generatedPassword.length; index++) {
     generatedPasswordArray.push(generatedPassword[index]);

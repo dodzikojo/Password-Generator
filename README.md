@@ -28,7 +28,15 @@ An application to generate a random password based on criteria the user has sele
             }
         }
     ```
-
+* Generated password is randomized to alter the order in which the password is generated.
+    ```javascript
+    var generatedPasswordArray = [];
+    for (let index = 0; index < generatedPassword.length; index++) {
+        generatedPasswordArray.push(generatedPassword[index]);
+    }
+    var randomizedGeneratedPasswordArray = generatedPasswordArray.sort(function (a, b) { return 0.5 - Math.random() })
+    return randomizedGeneratedPasswordArray.join('');
+    ```
 * Default value for length of password has be defined to simplify password generating.
     ```javascript
     userPasswordOptions.passwordLength = parseInt(prompt("How long would you like your password to be?", 14));
