@@ -1,7 +1,7 @@
 
 
 class passwordOptions {
-  constructor(passwordLength = 14, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters) {
+  constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters) {
     passwordLength = passwordLength;
     isMixedCase = isMixedCase,
       isLowerCase = isLowerCase,
@@ -141,33 +141,27 @@ function generatePassword() {
 
   while (generatedPassword.length != userPasswordOptions.passwordLength) {
     if (userPasswordOptions.isMixedCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
-      var randomItem = getRandom(lowerCasedCharacters);
-      generatedPassword += randomItem;
+      generatedPassword += getRandom(lowerCasedCharacters);
       if (generatedPassword.length <= userPasswordOptions.passwordLength) {
-        var randomItem = getRandom(upperCasedCharacters);
-        generatedPassword += randomItem;
+        generatedPassword += getRandom(upperCasedCharacters);
       }
     }
 
     if (userPasswordOptions.isNumericCharacters == true && generatedPassword.length != userPasswordOptions.passwordLength) {
-      var randomItem = getRandom(numericCharacters);
-      generatedPassword += randomItem;
+      generatedPassword += getRandom(numericCharacters);
     }
 
 
     if (userPasswordOptions.isLowerCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
-      var randomItem = getRandom(lowerCasedCharacters);
-      generatedPassword += randomItem;
+      generatedPassword += getRandom(lowerCasedCharacters);
     }
 
     if (userPasswordOptions.isUpperCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
-      var randomItem = getRandom(upperCasedCharacters);
-      generatedPassword += randomItem;
+      generatedPassword += getRandom(upperCasedCharacters);
     }
 
     if (userPasswordOptions.isSpecialCharacters == true && generatedPassword.length != userPasswordOptions.passwordLength) {
-      var randomItem = getRandom(specialCharacters);
-      generatedPassword += randomItem;
+      generatedPassword += getRandom(specialCharacters);
     }
   }
 
@@ -191,10 +185,9 @@ function writePassword() {
       passwordText.value = password;
     }
     else {
-      passwordText.value = "Unable to generate password. Check that all necessary information is provided."
+      passwordText.value = "Check that all atleast one character type is selected when prompted."
     }
   }
-  
 
 }
 
