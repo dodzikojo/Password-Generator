@@ -1,24 +1,19 @@
 
 
-class passwordOptions  {
-  constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters){
+class passwordOptions {
+  constructor(passwordLength = 14, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters) {
     passwordLength = passwordLength;
     isMixedCase = isMixedCase,
-    isLowerCase = isLowerCase,
-    isUpperCase = isUpperCase,
-    isNumericCharacters = isNumericCharacters,
-    isSpecialCharacters = isSpecialCharacters
+      isLowerCase = isLowerCase,
+      isUpperCase = isUpperCase,
+      isNumericCharacters = isNumericCharacters,
+      isSpecialCharacters = isSpecialCharacters
   }
- 
+
 
 }
 
 let userPasswordOptions = new passwordOptions();
-
-
-// Code should validate for each input and at least one character type should be selected
-
-// Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 
 // Array of special characters to be included in password
 var specialCharacters = [
@@ -112,55 +107,53 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  userPasswordOptions.passwordLength = parseInt(prompt("How long would you like your password to be?",10));
+  userPasswordOptions.passwordLength = parseInt(prompt("How long would you like your password to be?", 14));
 
 
-  if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64 ) {
+  if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64) {
     userPasswordOptions.isMixedCase = confirm("Would you like your password to consist of Mixed cases?");
-  
+
     if (userPasswordOptions.isMixedCase != true) {
-  
-      userPasswordOptions.isLowerCase = confirm("Include Lowercase only? Otherwise, Upper Case would be used.");
-  
-      if (userPasswordOptions.isLowerCase != true) {
-        userPasswordOptions.isUpperCase = true;
-      }
+
+      userPasswordOptions.isLowerCase = confirm("Include Lowercase characters?");
+      userPasswordOptions.isUpperCase = confirm("Include Uppercase characters?");
+
     }
 
-    userPasswordOptions.isSpecialCharacters = confirm("Include special characters?")
+    userPasswordOptions.isSpecialCharacters = confirm("Include special characters?");
+    userPasswordOptions.isNumericCharacters = confirm("Include Numerical characters?");
   }
   else {
-    alert("You need to enter a valid number between 10-64");
+    alert("You need to enter a valid number between 10-64.");
   }
-
-  console.log(userPasswordOptions);
 }
 
 // Function for getting a random element from an array
 function getRandom(arrayItem) {
-  return item = arrayItem[Math.floor(Math.random()*arrayItem.length)];
+  return item = arrayItem[Math.floor(Math.random() * arrayItem.length)];
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  // getPasswordOptions();
 
   var generatedPassword = "";
 
 
-
-
-  for (let index = 0; generatedPassword.length <= userPasswordOptions.passwordLength; index++) {
-
+  while (generatedPassword.length != userPasswordOptions.passwordLength) {
     if (userPasswordOptions.isMixedCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
       var randomItem = getRandom(lowerCasedCharacters);
       generatedPassword += randomItem;
-      if (generatedPassword.length != userPasswordOptions.passwordLength) {
+      if (generatedPassword.length <= userPasswordOptions.passwordLength) {
         var randomItem = getRandom(upperCasedCharacters);
         generatedPassword += randomItem;
       }
-      
     }
+
+    if (userPasswordOptions.isNumericCharacters == true && generatedPassword.length != userPasswordOptions.passwordLength) {
+      var randomItem = getRandom(numericCharacters);
+      generatedPassword += randomItem;
+    }
+
 
     if (userPasswordOptions.isLowerCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
       var randomItem = getRandom(lowerCasedCharacters);
@@ -176,7 +169,6 @@ function generatePassword() {
       var randomItem = getRandom(specialCharacters);
       generatedPassword += randomItem;
     }
-    // console.log("counter is: "+index);
   }
 
   return generatedPassword;
@@ -188,10 +180,22 @@ var generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
   getPasswordOptions();
-  var password = generatePassword();
+
+  
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64) {
+    if (userPasswordOptions.isNumericCharacters != false || userPasswordOptions.isSpecialCharacters != false || userPasswordOptions.isLowerCase != false || userPasswordOptions.isUpperCase != false) {
+   
+      var password = generatePassword();
+      passwordText.value = password;
+    }
+    else {
+      passwordText.value = "Unable to generate password. Check that all necessary information is provided."
+    }
+  }
+  
+
 }
 
 // Add event listener to generate button
