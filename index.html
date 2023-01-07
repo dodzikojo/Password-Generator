@@ -24,67 +24,12 @@
         <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
       </div>
       <div class="custom-card-footer">
-        <button type="button" class="custom-btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        <button type="button" class="custom-btn btn-primary" 
           id="generate">Generate Password</button>
       </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Configure Password</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <p class="modal-info-text text-center">Use the slider, and select from the options below to lengthen your password and strengthen your security.</p>
-          <div class="modal-body">
-            <div class="row">
-              <div class="slidecontainer col-12">
-                <input id="slide" type="range" min="10" max="64" step="1" value="14" class="slider" id="myRange"
-                  style="width: 100%;">
-                  <p class="fs-6 text-center">Password Length (10-64):</p>
-              </div>
-
-
-
-            </div>
-            <div class="row mt-2">
-              <div class="pl-2 form-check col-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Letters
-                </label>
-              </div>
-              <div class="form-check  col-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  Mixed Case
-                </label>
-              </div>
-              <div class="form-check  col-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  Punctuation
-                </label>
-              </div>
-              <div class="form-check  col-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  Numbers
-                </label>
-              </div>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Generate</button>
-          </div>
-        </div>
-      </div>
-    </div>
+  
 
   </div>
   <script src="script.js"></script>

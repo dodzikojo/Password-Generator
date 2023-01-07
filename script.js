@@ -1,45 +1,23 @@
-// Pseudo code
-// Generate a password when the button is clicked
-// Present a series of prompts for password criteria
-// Length of password
-// At least 10 characters but no more than 64.
-  // Prompt:  How long would you like your password to be?(10-64)
-
-var passwordLength;
-var isLowerCase = false;
-var isUpperCase = false;
-var isNumericCharacters = false;
-var isSpecialCharacters = false;
 
 
-//   if(typeof(passwordLength) == 'number'){
-//     console.log ("Well done!It's a number");
-//   }
-//   else {
-//   console.log ("You need to select a number");
-// }
+class passwordOptions  {
+  constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters){
+    passwordLength = passwordLength;
+    isMixedCase = isMixedCase,
+    isLowerCase = isLowerCase,
+    isUpperCase = isUpperCase,
+    isNumericCharacters = isNumericCharacters,
+    isSpecialCharacters = isSpecialCharacters
+  }
+ 
 
-if(isNaN(passwordLength)){
-  alert("it is a valid number");
-}else {
-  alert("it is not a valid number");
 }
 
+let userPasswordOptions = new passwordOptions();
 
 
-  // Validation:
-   //  Ensure that input is numerical and falls within the required specifications.
-// Character types
-// Lowercase
-  // Confirm Prompt: Do you want lowercase  characters in your password?
-// Uppercase
-  // Confirm Prompt: Do you want uppercase characters in your password?
-// Numeric
-  //Confirm  Prompt: Do you want numeric characters in your password?
-// Special characters ($@%&*, etc)
-  //Confirm  Prompt: Do you want special characters in your password?
 // Code should validate for each input and at least one character type should be selected
-  // Minimum requirement: length of characters and at least one character type
+
 // Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 
 // Array of special characters to be included in password
@@ -134,17 +112,74 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  userPasswordOptions.passwordLength = parseInt(prompt("How long would you like your password to be?",10));
 
+
+  if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64 ) {
+    userPasswordOptions.isMixedCase = confirm("Would you like your password to consist of Mixed cases?");
+  
+    if (userPasswordOptions.isMixedCase != true) {
+  
+      userPasswordOptions.isLowerCase = confirm("Include Lowercase only? Otherwise, Upper Case would be used.");
+  
+      if (userPasswordOptions.isLowerCase != true) {
+        userPasswordOptions.isUpperCase = true;
+      }
+    }
+
+    userPasswordOptions.isSpecialCharacters = confirm("Include special characters?")
+  }
+  else {
+    alert("You need to enter a valid number between 10-64");
+  }
+
+  console.log(userPasswordOptions);
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-
+function getRandom(arrayItem) {
+  return item = arrayItem[Math.floor(Math.random()*arrayItem.length)];
 }
 
 // Function to generate password with user input
 function generatePassword() {
+  // getPasswordOptions();
 
+  var generatedPassword = "";
+
+
+
+
+  for (let index = 0; generatedPassword.length <= userPasswordOptions.passwordLength; index++) {
+
+    if (userPasswordOptions.isMixedCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
+      var randomItem = getRandom(lowerCasedCharacters);
+      generatedPassword += randomItem;
+      if (generatedPassword.length != userPasswordOptions.passwordLength) {
+        var randomItem = getRandom(upperCasedCharacters);
+        generatedPassword += randomItem;
+      }
+      
+    }
+
+    if (userPasswordOptions.isLowerCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
+      var randomItem = getRandom(lowerCasedCharacters);
+      generatedPassword += randomItem;
+    }
+
+    if (userPasswordOptions.isUpperCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
+      var randomItem = getRandom(upperCasedCharacters);
+      generatedPassword += randomItem;
+    }
+
+    if (userPasswordOptions.isSpecialCharacters == true && generatedPassword.length != userPasswordOptions.passwordLength) {
+      var randomItem = getRandom(specialCharacters);
+      generatedPassword += randomItem;
+    }
+    // console.log("counter is: "+index);
+  }
+
+  return generatedPassword;
 }
 
 // Get references to the #generate element
@@ -152,12 +187,9 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
+  getPasswordOptions();
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
-
-  var passwordLength = parseInt(prompt("How long would you like your password to be?"));
-  console.log (typeof(passwordLength));
 
   passwordText.value = password;
 }
