@@ -9,8 +9,6 @@ class passwordOptions {
       isNumericCharacters = isNumericCharacters,
       isSpecialCharacters = isSpecialCharacters
   }
-
-
 }
 
 let userPasswordOptions = new passwordOptions();
