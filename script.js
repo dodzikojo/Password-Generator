@@ -120,14 +120,14 @@ function getPasswordOptions() {
 
     if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64) {
       userPasswordOptions.isMixedCase = confirm("Would you like your password to consist of Mixed cases?");
-  
+
       if (userPasswordOptions.isMixedCase != true) {
-  
+
         userPasswordOptions.isLowerCase = confirm("Include Lowercase characters?");
         userPasswordOptions.isUpperCase = confirm("Include Uppercase characters?");
-  
+
       }
-  
+
       userPasswordOptions.isSpecialCharacters = confirm("Include special characters?");
       userPasswordOptions.isNumericCharacters = confirm("Include Numerical characters?");
 
@@ -137,7 +137,7 @@ function getPasswordOptions() {
       alert("You need to enter a valid number between 10-64.");
     }
   }
- 
+
 }
 
 // Function for getting a random element from an array
@@ -150,7 +150,6 @@ function generatePassword() {
 
   var generatedPassword = "";
 
-
   while (generatedPassword.length != userPasswordOptions.passwordLength) {
     if (userPasswordOptions.isMixedCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
       generatedPassword += getRandom(lowerCasedCharacters);
@@ -162,7 +161,6 @@ function generatePassword() {
     if (userPasswordOptions.isNumericCharacters == true && generatedPassword.length != userPasswordOptions.passwordLength) {
       generatedPassword += getRandom(numericCharacters);
     }
-
 
     if (userPasswordOptions.isLowerCase == true && generatedPassword.length != userPasswordOptions.passwordLength) {
       generatedPassword += getRandom(lowerCasedCharacters);
@@ -177,7 +175,12 @@ function generatePassword() {
     }
   }
 
-  return generatedPassword;
+  var generatedPasswordArray = [];
+  for (let index = 0; index < generatedPassword.length; index++) {
+    generatedPasswordArray.push(generatedPassword[index]);
+  }
+  var randomizedGeneratedPasswordArray = generatedPasswordArray.sort(function (a, b) { return 0.5 - Math.random() })
+  return randomizedGeneratedPasswordArray.join('');
 }
 
 // Get references to the #generate element
@@ -187,12 +190,12 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   getPasswordOptions();
 
-  
+
   var passwordText = document.querySelector('#password');
 
   if (userPasswordOptions.passwordLength >= 10 && userPasswordOptions.passwordLength <= 64) {
     if (userPasswordOptions.isNumericCharacters != false || userPasswordOptions.isSpecialCharacters != false || userPasswordOptions.isLowerCase != false || userPasswordOptions.isUpperCase != false) {
-   
+
       var password = generatePassword();
       passwordText.value = password;
     }
