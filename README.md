@@ -1,4 +1,4 @@
-# Password-Generator
+# Password Generator
 An application to generate a random password based on criteria the user has selected.
 
 ## Project Requirements
@@ -17,15 +17,16 @@ An application to generate a random password based on criteria the user has sele
 * A passwordOptions class is created to store all user selected options for creating the password.
     ```javascript
         class passwordOptions {
-            constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters) {
+            constructor(passwordLength, isMixedCase, isLowerCase, isUpperCase, isNumericCharacters, isSpecialCharacters, hasPasswordOptionsSelected) {
                 passwordLength = passwordLength;
                 isMixedCase = isMixedCase,
                 isLowerCase = isLowerCase,
                 isUpperCase = isUpperCase,
                 isNumericCharacters = isNumericCharacters,
-                isSpecialCharacters = isSpecialCharacters
+                isSpecialCharacters = isSpecialCharacters,
+                hasPasswordOptionsSelected = hasPasswordOptionsSelected
             }
-    }
+        }
     ```
 
 * Default value for length of password has be defined to simplify password generating.
@@ -42,6 +43,12 @@ An application to generate a random password based on criteria the user has sele
             userPasswordOptions.isUpperCase = confirm("Include Uppercase characters?");
         }
         ....
+    ```
+* Added functionality to reuse previously selected password options if application is still running.
+    ```javascript
+     if (userPasswordOptions.hasPasswordOptionsSelected == true) {
+        usePreviousOptions = confirm("Would you like to use previously selected options?");
+    }
     ```
 ## Preview
 [Live Preview](https://dodzikojo.github.io/Password-Generator/ "Live Preview")

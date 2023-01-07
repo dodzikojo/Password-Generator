@@ -138,9 +138,6 @@ function getPasswordOptions() {
     }
   }
  
-    
-  
- 
 }
 
 // Function for getting a random element from an array
